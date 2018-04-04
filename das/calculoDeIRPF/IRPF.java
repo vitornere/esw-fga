@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class IRPF {
 
 	ArrayList<Rendimento> rendimentos = new ArrayList<Rendimento>();
+	ArrayList<Deducao> deducoes = new ArrayList<Deducao>();
 	
 	public boolean cadastrarRendimento(Rendimento r) {
 		Rendimento temp = consultarRendimento(r.descricao);
@@ -40,6 +41,24 @@ public class IRPF {
 	public Object[] getRendimentos() {
 		Object[] resposta = rendimentos.toArray();
 		return resposta;
+	}
+
+	public boolean cadastrarDedudacao(Deducao d) {
+		boolean resposta = deducoes.add(d);
+		return resposta;
+	}
+
+	public float totalDeducoes() {
+		float soma = 0f;
+		for (Deducao d : deducoes){
+			soma += d.getValor();
+		}
+		return soma;
+	}
+
+	public int numTotalDeducoes() {
+		int count = deducoes.size();
+		return count;
 	}
 	
 }
