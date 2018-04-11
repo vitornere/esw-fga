@@ -2,6 +2,9 @@ package calculoDeIRPF;
 
 import java.util.ArrayList;
 
+import calculoDeIRPF.exceptions.RendimentosNulosException;
+import calculoDeIRPF.exceptions.RendimentosVaziosException;
+
 public class IRPF {
 
 	ArrayList<Rendimento> rendimentos = new ArrayList<Rendimento>();
@@ -27,11 +30,14 @@ public class IRPF {
 		return resposta;
 	}
 
-	public float totalRendimentos() {
+	public float totalRendimentos() throws RendimentosNulosException {
 		float totalRendimentos = 0f;
 		for (Rendimento r : rendimentos)
 			totalRendimentos += r.getValor();
-		return totalRendimentos;
+		if (totalRendimentos == 0) 
+			throw new RendimentosNulosException();
+		else 
+			return totalRendimentos;
 	}
 
 	public int numRendimentos() {
@@ -59,6 +65,18 @@ public class IRPF {
 	public int numTotalDeducoes() {
 		int count = deducoes.size();
 		return count;
+	}
+
+	public float calcularBaseDeCalculo() throws RendimentosVaziosException  {
+		if (rendimentos.isEmpty())
+			throw new RendimentosVaziosException();
+		else {
+			float baseDeCalculo = 0; 
+			for (Rendimento r : rendimentos) {
+				baseDeCalculo += r.getValor();
+			}
+			return baseDeCalculo;
+		}
 	}
 	
 }
