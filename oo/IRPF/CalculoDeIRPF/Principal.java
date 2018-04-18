@@ -31,12 +31,57 @@ public class Principal {
 			switch ((String) opcaoSelecionada) {
 			case "Cadastrar contribuinte":
 				cadastrarContribuinte();
-			break;
+			    break;
+			
+			case "Cadastrar Rendimento":
+				cadastrarRendimento();
+				break;
 
 			default:
 				break;
 			}
 		} while (!((String)opcaoSelecionada).equals((String)opcoesPossiveis[6]));
+	}
+
+
+
+	private static void cadastrarRendimento() {
+		//Obter o nome de todos contribuintes
+		String[] nomesContribuintes = new String[contribuintes.length];
+		for (int i=0; i<contribuintes.length; i++) {
+			nomesContribuintes[i] = contribuintes[i].nome;
+		}
+		
+		String nomeContribSelecionado = (String)JOptionPane.showInputDialog(null, 
+				                                     "Escolha o contribuinte", 
+				                                     "Calculo IRPF", 
+        				                             JOptionPane.INFORMATION_MESSAGE, 
+		        		                             null, 
+				                                     nomesContribuintes, 
+				                                     null);
+		
+		IRPF contribuinte = pesquisarContribuinte(nomeContribSelecionado);
+		int novoRendimento;
+		do {
+			contribuinte.cadastrarRendimento();
+			novoRendimento = JOptionPane.showConfirmDialog(null, "Deseja cadastrar novo rendimento?");
+		} while (novoRendimento == JOptionPane.YES_OPTION);
+		
+		
+		
+	}
+
+
+
+	private static IRPF pesquisarContribuinte(String nomeContribSelecionado) {
+		IRPF resposta = null;
+		for (IRPF i : contribuintes) {
+			if (i.nome.equals(nomeContribSelecionado)) {
+				resposta = i;
+				return resposta;
+			}
+		}
+		return resposta;
 	}
 
 
