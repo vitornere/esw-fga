@@ -10,33 +10,73 @@ public class Principal {
 	
 	
 	public static void main (String[] args) {
-		IRPF contribuinte1, 
-		     contribuinte2; 
+		//Menu de opcoes
+		Object[] opcoesPossiveis = {"--- Selecione uma opcao ---",
+									"Cadastrar contribuinte", 
+				                    "Cadastrar Rendimento", 
+				                    "Cadastrar Deducao",
+				                    "Cadastrar Dependente",
+				                    "Calcular imposto", 
+				                    "Sair"};
+		Object opcaoDefault = opcoesPossiveis[0];
+		Object opcaoSelecionada = null;
+		do {
+			opcaoSelecionada = JOptionPane.showInputDialog(null, 
+											"Selecione uma das opcoes a seguir:", 
+											"Calculo de IRPF", 
+											JOptionPane.QUESTION_MESSAGE, 
+											null, 
+											opcoesPossiveis, 
+											opcaoDefault);
+			switch ((String) opcaoSelecionada) {
+			case "Cadastrar contribuinte":
+				cadastrarContribuinte();
+			break;
+
+			default:
+				break;
+			}
+		} while (!((String)opcaoSelecionada).equals((String)opcoesPossiveis[6]));
+	}
+
+
+
+	private static IRPF cadastrarContribuinte() {
+		//Leitura dos valores para Nome e sexo do contribuinte
+		String nomeContribuinte = JOptionPane.showInputDialog("Informe o nome do dependente:");
+
+		Object[] opcoes = {"--- Selecione uma opcao ---" , "Feminino", "Masculino"}; 
+		Object opcaoDefault = opcoes[0];
 		
-		contribuinte1 = new IRPF();
-		contribuinte2 = new IRPF();
+		Object opcaoEscolhida = opcaoDefault;
+		do {
+			opcaoEscolhida = JOptionPane.showInputDialog(null, 
+														 "Informe o sexo do contribuinte", 
+														 "Sexo do contribuinte", 
+														 JOptionPane.QUESTION_MESSAGE, 
+														 null, 
+														 opcoes, 
+														 opcaoDefault);
+		} while (opcaoEscolhida == opcaoDefault);
 		
-		int novoRendimento;
-		do { 
-			contribuinte1.cadastrarRendimento();
-			novoRendimento = JOptionPane.showConfirmDialog(null, 
-					"Deseja cadastrar novo rendimento?" , 
-					"Novo rendimento?", 
-					JOptionPane.YES_NO_OPTION, 
-					JOptionPane.QUESTION_MESSAGE);
-		} while(novoRendimento == JOptionPane.YES_OPTION);
+		//Instanciacao do objeto IRPF (=contribuinte)
+		IRPF cidadao = new IRPF(nomeContribuinte, (String)opcaoEscolhida);
 		
-		do { 
-			contribuinte2.cadastrarRendimento();
-			novoRendimento = JOptionPane.showConfirmDialog(null, 
-					"Deseja cadastrar novo rendimento?" , 
-					"Novo rendimento?", 
-					JOptionPane.YES_NO_OPTION, 
-					JOptionPane.QUESTION_MESSAGE);
-		} while(novoRendimento == JOptionPane.YES_OPTION);
+		//Armazenamento do objeto cidadao no vetor de contribuintes
+		int qtdeContribuintesAtual = contribuintes.length;
+		int novaQtdeContribuintes = qtdeContribuintesAtual + 1;
+		IRPF[] temp = new IRPF[novaQtdeContribuintes];
 		
-		System.out.println(contribuinte1 + ": " + contribuinte1.totalRendimentos());
-		System.out.println(contribuinte2 + ": " + contribuinte2.totalRendimentos());
+		for (int i=0; i<qtdeContribuintesAtual; i++) {
+			temp[i] = contribuintes[i];
+		}
+		
+		temp [novaQtdeContribuintes - 1] = cidadao;
+		
+		//atualizacao do vetor de contribuintes 
+		contribuintes = temp;
+		
+		return temp[novaQtdeContribuintes-1];
 	}
 
 }
