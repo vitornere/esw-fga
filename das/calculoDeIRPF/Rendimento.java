@@ -1,4 +1,3 @@
-package calculoDeIRPF;
 
 public class Rendimento {
 
