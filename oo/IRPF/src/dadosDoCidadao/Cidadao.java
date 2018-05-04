@@ -18,4 +18,15 @@ public class Cidadao {
 		sexo = s;
 		cpf = c;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

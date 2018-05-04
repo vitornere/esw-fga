@@ -51,7 +51,7 @@ public class Principal {
 		//Obter o nome de todos contribuintes
 		String[] nomesContribuintes = new String[contribuintes.length];
 		for (int i=0; i<contribuintes.length; i++) {
-			nomesContribuintes[i] = contribuintes[i].nome;
+			nomesContribuintes[i] = contribuintes[i].getCidadao().getNome();
 		}
 		
 		String nomeContribSelecionado = (String)JOptionPane.showInputDialog(null, 
@@ -78,7 +78,7 @@ public class Principal {
 	private static IRPF pesquisarContribuinte(String nomeContribSelecionado) {
 		IRPF resposta = null;
 		for (IRPF i : contribuintes) {
-			if (i.nome.equals(nomeContribSelecionado)) {
+			if (i.getCidadao().getNome().equals(nomeContribSelecionado)) {
 				resposta = i;
 				return resposta;
 			}
