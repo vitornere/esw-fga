@@ -1,4 +1,4 @@
-package calculoDeIRPF.tests;
+package tests;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import calculoDeIRPF.Deducao;
-import calculoDeIRPF.IRPF;
+import aplicacao.Deducao;
+import aplicacao.IRPF;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DeducaoTest {

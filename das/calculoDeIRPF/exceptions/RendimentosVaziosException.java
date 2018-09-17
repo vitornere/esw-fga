@@ -1,4 +1,4 @@
-package calculoDeIRPF.exceptions;
+package exceptions;
 
 public class RendimentosVaziosException extends RendimentoException {
 	public final static String msg = "Rendimentos vazios: o numero de rendimentos eh"
