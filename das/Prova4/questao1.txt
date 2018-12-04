@@ -1,0 +1,19 @@
+a) Framework de componente é a implementação de serviços que dão suporte ou reforçam o modelo de componentes. 
+A função do framework é gerenciar os recursos compartilhados pelos componentes e prover um mecanismo que 
+possibilita a comunicação entre eles. A infraestrutura oferecida pelos frameworks de componentes impõe 
+restrições e regras no projeto e implementação, as quais devem ser consideradas pelo modelo de componentes. 
+Possuindo o papel de ser pelo menos uma destas categorias de serviços: empacotamento, distribuição, segurança, 
+gerenciamento de transações e comunicação assíncrona.
+
+b) Modelo de componente representa um elemento da arquitetura do sistema na qual seu papel é definir os padrões e 
+convenções impostas aos componentes do sistema, de modo a descrever a função de cada um e como eles interagem 
+entre si. Com isso busca-se expressar restrições de projeto arquitetural ou global.
+
+c) Componentes de software possui diferentes definições na literatura. Segunda Sametinger, componentes podem ser vistos como 
+alguma parte do sistema de software que é identificável e reusável, ou como o estado seguinte de abstração depois 
+de funções, módulos e classes. Segundo Brown, componente é caracterizado como “conjunto independente de serviços 
+reutilizáveis”. Apresentando 2 elementos principais: “serviços reutilizáveis” e “independente”, que implica que o 
+componente provê habilidades que muitos outros componentes podem acessar e que indica a ausência de vínculo do 
+componente com o contexto em que ele pode ser usado, respectivamente. E por fim, segundo Szyperski, componente de 
+software é uma unidade de composição com interfaces contratualmente especificadas e apenas explícitas dependências 
+de contexto, podendo ser usado independente e combinado com outras partes.
